@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Mon Ange 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+background:linear-gradient(135deg,#ffd6ec,#ffeef7);
+overflow:hidden;
+font-family:'Dancing Script',cursive;
+}
+
+/* Floating Hearts */
+.heart{
+position:fixed;
+color:#4da6ff;
+font-size:18px;
+opacity:0.6;
+animation:float 8s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+/* Center Box */
+.box{
+width:85%;
+max-width:600px;
+margin:120px auto;
+padding:30px;
+background:white;
+border-radius:30px;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+text-align:center;
+animation:fade 1s ease;
+}
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+background:#ff4da6;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{
+transform:scale(1.1);
+}
+
+.page{display:none;}
+
+/* ENVELOPE */
+.envelope{
+width:260px;
+height:170px;
+background:#ffc0cb;
+margin:80px auto;
+position:relative;
+cursor:pointer;
+transition:1s;
+border-radius:10px;
+}
+.envelope:before{
+content:"💗";
+font-size:40px;
+position:absolute;
+top:60px;
+left:110px;
+}
+.envelope.open{
+transform:rotateX(180deg);
+}
+.letter{
+display:none;
+width:70%;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+font-family:'Great Vibes',cursive;
+font-size:22px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* HEART LOCK DOOR */
+.lockContainer{
+perspective:1500px;
+width:200px;
+height:200px;
+margin:100px auto;
+position:relative;
+}
+.heartDoor{
+width:100%;
+height:100%;
+background:pink;
+clip-path:path("M100 180 L20 90 A50 50 0 0 1 100 40 A50 50 0 0 1 180 90 Z");
+position:absolute;
+transform-origin:left;
+transition:transform 1s;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:20px;
+}
+.heartDoor.open{
+transform:rotateY(-120deg);
+background:#ff99cc;
+}
+.lockContent{
+display:none;
+text-align:center;
+margin-top:250px;
+}
+
+/* BOOK */
+.book-container{
+perspective:2500px;
+width:350px;
+height:450px;
+margin:50px auto;
+}
+.book{
+width:100%;
+height:100%;
+position:relative;
+transform-style:preserve-3d;
+}
+.pageBook{
+position:absolute;
+width:100%;
+height:100%;
+background:white;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+padding:20px;
+box-sizing:border-box;
+transform-origin:left;
+transition:transform 1s;
+backface-visibility:hidden;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-family:'Great Vibes',cursive;
+font-size:22px;
+}
+.pageBook img{
+width:80%;
+border-radius:15px;
+margin:10px;
+}
+.pageBook.flipped{
+transform:rotateY(-180deg);
+}
+.nextBtn{
+position:absolute;
+bottom:15px;
+right:20px;
+background:#4da6ff;
+}
+</style>
+</head>
+<body>
+
+<script>
+for(let i=0;i<30;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💙";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(h);
+}
+</script>
+
+<!-- PAGE 1 -->
+<div id="page1" class="box">
+<h2>Will you be my valentine Mon Ange?? 🙈</h2>
+<button onclick="yes()">Yes, ofcourse 😘</button>
+<button onclick="no()">Noo, Sry 🥲</button>
+</div>
+
+<div id="noPage" class="box page" style="background:#e6f2ff;">
+<h2>Achooo 🥺 Noo va?? Plsss 😭</h2>
+<button onclick="back()">Go Back</button>
+</div>
+
+<div id="page2" class="box page">
+<h2>I know chellamey 🙈 Next page ku po 😌</h2>
+<button onclick="openLetter()">Next</button>
+</div>
+
+<!-- LETTER -->
+<div id="page3" class="page">
+<div class="envelope" id="env" onclick="openEnvelope()"></div>
+<div id="letter" class="letter">
+From : Mamsehhhh 🤍, Chennai<br>
+To : Mon Ange 💙🌍, Coimbatore<br><br>
+Dear chellamey,<br>
+When two hearts connected, distance doesn't matter...
+Love you to the infinity 😘<br><br>
+<button onclick="openLock()">Next</button>
+</div>
+</div>
+
+<!-- HEART LOCK -->
+<div id="page4" class="page">
+<div class="lockContainer">
+<div class="heartDoor" id="door">
+<input type="password" id="pass" placeholder="1605">
+</div>
+</div>
+<div class="lockContent" id="lockContent">
+<p>Intha time la oru song dedicate panuren 😽</p>
+<button onclick="playSong()">Play</button>
+<audio id="song" src="Un viral.mp3"></audio>
+</div>
+</div>
+
+<!-- BOOK -->
+<div id="page5" class="page">
+<div class="book-container">
+<div class="book" id="book">
+
+<!-- COVER -->
+<div class="pageBook" style="z-index:10">
+<h2>Our Beautiful Journey Mon Ange 👨‍❤️‍👨</h2>
+<button class="nextBtn" onclick="flip(0)">Open</button>
+</div>
+
+<!-- PAGES -->
+<script>
+let captions=[
+"",
+"",
+"You entered my life as a blessing 💫",
+"You complete me 🤍",
+"You are my happy-pill 💊",
+"I will always there to irritate you 😼",
+"You are my favourite notification 💌",
+"You are the best part of my life 🥺",
+"My love for you increasing day by day 🧿",
+"I miss you sooooooooooooooooooooooo much Muu 🥺💙"
+];
+
+for(let i=1;i<=9;i++){
+document.write(`
+<div class="pageBook" id="page${i}" style="z-index:${9-i}">
+<img src="Photo${i}.jpg">
+<p>${captions[i]}</p>
+<button class="nextBtn" onclick="flip(${i})">Next</button>
+</div>
+`);
+}
+</script>
+
+</div>
+</div>
+</div>
+
+<script>
+function yes(){page1.style.display="none";page2.style.display="block";}
+function no(){page1.style.display="none";noPage.style.display="block";}
+function back(){noPage.style.display="none";page1.style.display="block";}
+function openLetter(){page2.style.display="none";page3.style.display="block";}
+function openEnvelope(){
+env.classList.add("open");
+setTimeout(()=>{letter.style.display="block";},800);
+}
+function openLock(){page3.style.display="none";page4.style.display="block";}
+door.addEventListener("input",function(){
+if(pass.value=="1605"){
+door.classList.add("open");
+setTimeout(()=>{lockContent.style.display="block";},1000);
+}
+});
+function playSong(){
+song.play();
+song.onended=function(){
+page4.style.display="none";
+page5.style.display="block";
+}
+}
+function flip(n){
+let p=document.getElementById("page"+n);
+if(p) p.classList.add("flipped");
+}
+</script>
+
+</body>
+</html>
